@@ -4,7 +4,6 @@ const octokit = require('@octokit/rest')()
 const commandLineArgs = require('command-line-args')
 
 async function createDeployment(options) {
-    options.task = 'deploy';
     options.required_contexts = [];
     let result = await octokit.repos.createDeployment(options)
     const id = result.data.id;
@@ -64,6 +63,7 @@ const optionDefinitions = [
     { name: 'environment_url', alias: 'u', type: String },
     { name: 'auto_inactive', type: Boolean },
     { name: 'payload', alias: 'p', type: String },
+    { name: 'task', alias: 't', type: String },
 ]
 const options = commandLineArgs(optionDefinitions)
 
