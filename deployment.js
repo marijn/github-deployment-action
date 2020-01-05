@@ -34,7 +34,9 @@ async function createDeploymentStatus(options) {
 }
 
 function main(options) {
-    const octokit = Octokit({ previews: ["ant-man-preview", "flash-preview"] });
+    const octokit = Octokit({
+        previews: ["ant-man-preview", "flash-preview"],
+    });
 
     octokit.authenticate({
         type: 'token',
