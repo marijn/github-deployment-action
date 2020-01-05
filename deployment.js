@@ -1,13 +1,10 @@
 
 const fs = require('fs');
-const octokit = require('@octokit/rest')()
+const octokit = require('@octokit/rest')({ previews: ["ant-man", "flash"] });
 const commandLineArgs = require('command-line-args')
 
 async function createDeployment(options) {
     options.required_contexts = [];
-    options.mediaType = {
-      previews: ["ant-man", "flash"]
-    };
     let result = await octokit.repos.createDeployment(options)
     const id = result.data.id;
     console.log(id);
@@ -20,9 +17,6 @@ async function createDeployment(options) {
 }
 
 async function createDeploymentStatus(options) {
-    options.mediaType = {
-      previews: ["ant-man", "flash"]
-    };
     delete options.setstatus;
     delete options.ref;
 
