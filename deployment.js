@@ -11,7 +11,6 @@ async function createDeployment(options) {
     let result = await octokit.repos.createDeployment(options)
     const id = result.data.id;
     console.log(id);
-    fs.writeFileSync(process.env.HOME + '/deployment_action', id);
     
     console.log(result.status == 201 ? 'Done': 'Error');
     if(result.status != 201) {
@@ -21,8 +20,6 @@ async function createDeployment(options) {
 }
 
 async function createDeploymentStatus(options) {
-    const idTxt = fs.readFileSync(process.env.HOME + '/deployment_action', 'utf8');
-    options.deployment_id = parseInt(idTxt);
     options.mediaType = {
       previews: ["ant-man", "flash"]
     };
