@@ -1,6 +1,6 @@
 
 const fs = require('fs');
-const octokit = require('@octokit/rest')({ previews: ["ant-man-preview", "flash-preview"] });
+const Octokit = require('@octokit/rest');
 const commandLineArgs = require('command-line-args')
 
 async function createDeployment(options) {
@@ -34,6 +34,8 @@ async function createDeploymentStatus(options) {
 }
 
 function main(options) {
+    const octokit = Octokit({ previews: ["ant-man-preview", "flash-preview"] });
+
     octokit.authenticate({
         type: 'token',
         token: process.env.GITHUB_TOKEN
