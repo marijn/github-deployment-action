@@ -1,6 +1,6 @@
 
 const fs = require('fs');
-const octokit = require('@octokit/rest')({ previews: ["ant-man", "flash"] });
+const octokit = require('@octokit/rest')({ previews: ["ant-man-preview", "flash-preview"] });
 const commandLineArgs = require('command-line-args')
 
 async function createDeployment(options) {
