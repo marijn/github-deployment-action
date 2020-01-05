@@ -5,6 +5,9 @@ const commandLineArgs = require('command-line-args')
 
 async function createDeployment(options) {
     options.required_contexts = [];
+    options.mediaType = {
+      previews: ["ant-man", "flash"]
+    };
     let result = await octokit.repos.createDeployment(options)
     const id = result.data.id;
     console.log(id);
@@ -20,6 +23,9 @@ async function createDeployment(options) {
 async function createDeploymentStatus(options) {
     const idTxt = fs.readFileSync(process.env.HOME + '/deployment_action', 'utf8');
     options.deployment_id = parseInt(idTxt);
+    options.mediaType = {
+      previews: ["ant-man", "flash"]
+    };
     delete options.setstatus;
     delete options.ref;
 
