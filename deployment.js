@@ -36,12 +36,11 @@ async function createDeploymentStatus(options) {
 function main(options) {
     const octokit = Octokit({
         previews: ["ant-man-preview", "flash-preview"],
+        auth: {
+            type: 'token',
+            token: process.env.GITHUB_TOKEN
+        }
     });
-
-    octokit.authenticate({
-        type: 'token',
-        token: process.env.GITHUB_TOKEN
-    })
 
     if(options.setstatus) {
         createDeploymentStatus(options);
